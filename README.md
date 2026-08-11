@@ -26,4 +26,6 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - Business Model Canvas estruturado com foco em Segurança Pública: [business_model_canvas.pdf](docs/business_model_canvas.pdf).
 - Product Backlog inicial elaborado e priorizado: [Acessar Backlog](https://github.com/users/JefersonPompermaier/projects/1/views/1).
 - Quadro Kanban configurado com definição de limites de Work In Progress (WIP): [Acessar Kanban](https://github.com/users/JefersonPompermaier/projects/1/views/1).
+- Controle de escopo e entregas via Milestone: [Sprint 0](https://github.com/JefersonPompermaier/predicao-furtos-veiculos-ml/milestone/1).
 - Artigo Científico (Introdução, Problema, Objetivos e Justificativa): [link].
+
