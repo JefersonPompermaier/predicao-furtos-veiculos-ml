@@ -27,5 +27,5 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - Product Backlog inicial elaborado e priorizado: [Acessar Backlog](https://github.com/users/JefersonPompermaier/projects/1/views/1).
 - Quadro Kanban configurado com definição de limites de Work In Progress (WIP): [Acessar Kanban](https://github.com/users/JefersonPompermaier/projects/1/views/1).
 - Controle de escopo e entregas via Milestone: [Sprint 0](https://github.com/JefersonPompermaier/predicao-furtos-veiculos-ml/milestone/1).
-- Artigo Científico (Introdução, Problema, Objetivos e Justificativa): [Artigo](https://docs.google.com/document/d/18MHThWSIqaLizTtSQuxRAUnVzkzXt_xg/edit).
+- Artigo Científico (Introdução, Problema, Objetivos e Justificativa): [Artigo](https://drive.google.com/file/d/1-dWAhvRrFdxWnRe-51XXfa38HreCRPIJ/view?usp=drive_link).
 
