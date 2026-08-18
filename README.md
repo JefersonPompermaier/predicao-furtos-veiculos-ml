@@ -29,16 +29,11 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - Controle de escopo e entregas via Milestone: [Sprint 0](https://github.com/JefersonPompermaier/predicao-furtos-veiculos-ml/milestone/1).
 - Artigo Científico (Introdução, Problema, Objetivos e Justificativa): [Artigo](https://drive.google.com/file/d/1-dWAhvRrFdxWnRe-51XXfa38HreCRPIJ/view?usp=drive_link).
 
-## Sprint 1 - Levantamento e Preparação de Dados
+## Sprint 1 - Conhecendo os Dados
 **Objetivo:** Identificar, avaliar e extrair a base de dados ideal para o treinamento do modelo preditivo, atualizar o backlog e avançar na escrita acadêmica.
 
 **Entregáveis:**
-- Levantamento e Avaliação de Dataset: Mapeamento técnico da base criminal (SSP-SP) concluído.
-- Avaliação da Fonte: Validação da viabilidade técnica (Granularidade Espacial e Temporal) da SSP-SP devido aos microdados georreferenciados (BOs).
-- Ingestão de Dados Automatizada: Automação via **Web Crawler (Selenium)** do download da série histórica (2019-2023) hospedado em `/src/scraper_ssp_sp.py`, superando a barreira do ASP.NET. Os dados mensais são salvos em `/data/SP/raw/`.
-- Análise Exploratória (EDA): Prototipação iniciada (ver notebooks) para validação de completude dos dados espaciais (análise de valores ausentes em lat/long).
-- Backlog Priorizado: Atualização das próximas sprints focando na limpeza profunda, remoção de duplicatas (BO_PRINCIPAL) e criação da malha espacial H3.
-- Requisitos:
-  - Funcional: Pipeline deve ingerir dados brutos da SSP-SP em Python e gerar arquivo consolidado unificado.
-  - Não Funcional: Processamento deve suportar mais de 1 milhão de registros (volumetria estimada de 5 anos).
-- Artigo Científico: Revisão de literatura, formulação do problema e definição da Metodologia de coleta de dados incluídas. (Pronto para revisão do orientador).
+- **Levantamento de datasets públicos (com justificativa da escolha):** Mapeamento técnico concluído e validado no diretório de dados [data/README.md](data/README.md). A base da SSP-SP foi eleita devido aos microdados georreferenciados. A coleta automatizada é feita via Web Crawler (`src/scraper_ssp_sp.py`).
+- **Notebook de Análise Exploratória de Dados (EDA):** Prototipação concluída para validação de completude dos dados espaciais e temporais: [01_exploracao_dados.ipynb](notebooks/01_exploracao_dados.ipynb).
+- **Backlog de requisitos priorizado:** Refinamento do backlog com novas histórias de usuário e requisitos funcionais/não-funcionais mapeados (ver Kanban do repositório).
+- **Artigo Científico:** Inclusão das seções de Fundamentação Teórica, Trabalhos Relacionados e Metodologia (DSRM): [Link compartilhado para o Artigo (LaTeX)](article/artigo.tex).
