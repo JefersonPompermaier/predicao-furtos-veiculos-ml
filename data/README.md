@@ -1,16 +1,19 @@
 # Catálogo de Dados - Segurança Pública
 
-## Resumo do Contexto Analítico
+## Resumo do Contexto Analítico e Priorização (Sprint 1)
 A modelagem preditiva de criminalidade veicular requer a separação entre crimes de roubo (violência/ameaça) e furto (ausência da vítima). A extração e o processamento de microdados exigem contratos de dados estritos para mitigar o viés temporal (diferença entre a data da ocorrência e a data do registro do boletim) e o viés espacial (geocodificação imprecisa nas coordenadas das delegacias).
 
-## 1. Fontes Primárias Mapeadas
+**Decisão Arquitetural da Fonte:**
+A **Secretaria de Segurança Pública do Estado de São Paulo (SSP-SP)** foi definida como a **fonte oficial e exclusiva** de dados para o treinamento do modelo *baseline*. 
 
-### Sistema Nacional de Informações de Segurança Pública (SINESP)
-* **URL de Acesso:** https://dados.gov.br/dados/conjuntos-dados/sistema-nacional-de-estatisticas-de-seguranca-publica
-* **Órgão Mantenedor:** Ministério da Justiça e Segurança Pública (MJSP)
-* **Formatos Disponíveis:** CSV, XLSX
-* **Granularidade Espacial:** Estado (UF) e Município
-* **Granularidade Temporal:** Mês/Ano
+**Justificativa:** A SSP-SP disponibiliza publicamente microdados estruturados em nível de Boletim de Ocorrência (BO) contendo coordenadas geográficas precisas (Latitude e Longitude), o que é estritamente obrigatório para mitigar o viés espacial (Modifiable Areal Unit Problem - MAUP) em análises de padrões de pontos (*Hotspots*).
+
+**Processo de Ingestão:**
+* **Método:** Automação programática via **Web Crawler em Selenium** (`src/scraper_ssp_sp.py`). O robô resolve a barreira de extração imposta pelas tecnologias obsoletas (PostBacks ASP.NET) e faz o download contínuo da série.
+* **Link Oficial para Download:** [Portal Transparência SSP - Dados Criminais (Veículos)](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx)
+* **Janela Histórica Adotada:** 5 Anos (2019 a 2023) para balancear captura de sazonalidades (incluindo pandemia) sem sobrecarregar a infraestrutura local. Os arquivos brutos (formato `.xls`/`.csv`) são processados e baixados diretamente no diretório `data/SP/raw/`.
+
+## 1. Fonte Primária
 
 ### Portal da Transparência SSP-SP
 * **URL de Acesso:** http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx
@@ -18,20 +21,6 @@ A modelagem preditiva de criminalidade veicular requer a separação entre crime
 * **Formatos Disponíveis:** CSV, XLS
 * **Granularidade Espacial:** Coordenadas GPS (Lat/Long), Logradouro, Bairro, CEP, Delegacia
 * **Granularidade Temporal:** Data exata, Hora exata, Período do dia
-
-### Portal de Dados Abertos SSP-RS
-* **URL de Acesso:** https://dados.rs.gov.br/
-* **Órgão Mantenedor:** Secretaria de Estado da Segurança Pública do Rio Grande do Sul
-* **Formatos Disponíveis:** CSV
-* **Granularidade Espacial:** Município, Bairro
-* **Granularidade Temporal:** Data exata, Faixa de Horário
-
-### Instituto de Segurança Pública do Rio de Janeiro (ISPDados)
-* **URL de Acesso:** https://www.ispdados.rj.gov.br/
-* **Órgão Mantenedor:** Instituto de Segurança Pública (ISP-RJ)
-* **Formatos Disponíveis:** CSV, SHP (Shapefiles), KML
-* **Granularidade Espacial:** CISP (Circunscrição), AISP, RISP, Município
-* **Granularidade Temporal:** Mês/Ano
 
 ## 2. Dicionário de Variáveis Alvo (Features)
 

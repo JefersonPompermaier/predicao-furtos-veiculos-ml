@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}  
+
+     
+\sloppy
+
+\title{Previsão e mapeamento de furtos e roubos de veículos}
+
+\author{Alexnsadro Lazzaretti\inst{1}, Jeferson Solforoso Pompermaier
+\inst{2} }
+
+
+\address{Universidade Federal da Fronteira Sul
+  (UFFS)\\
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+Public security in urban centers faces significant challenges, with vehicle thefts and robberies being offenses of high socio-economic impact. Despite the growing availability of open criminal data, there is a lack of integrated tools that transform these raw records into actionable intelligence. To mitigate this problem, this article describes the planning and development of a technological solution comprising a Machine Learning pipeline and an dashboard. The project, developed within the scope of the Project Planning and Management course at the Federal University of Fronteira Sul (UFFS), aims to predict and spatially map crime hotspots for vehicle offenses. The applied methodology encompassed data collection and preprocessing, the training of predictive models to identify spatio-temporal patterns, and integration with geoprocessing techniques. As a result, a visual and dynamic platform was structured, facilitating the understanding of criminal incidence, strategically assisting the preventive allocation of police resources, and supporting evidence-based decision-making.
+\end{abstract}
+
+\begin{resumo}
+A segurança pública em centros urbanos enfrenta desafios significativos, sendo os furtos e roubos de veículos infrações de alto impacto socioeconômico. Apesar da crescente disponibilidade de dados criminais abertos, há uma carência de ferramentas integradas que transformem esses registros brutos em inteligência acionável. Para mitigar esse problema, este artigo descreve o planejamento e o desenvolvimento de uma solução tecnológica composta por um \textit{pipeline} de \textit{Machine Learning} e um \textit{dashboard}. O projeto, desenvolvido no contexto da disciplina de Planejamento e Gestão de Projetos da Universidade Federal da Fronteira Sul (UFFS), tem como objetivo prever e mapear espacialmente manchas criminais (\textit{hotspots}) de delitos veiculares. A metodologia aplicada abrangeu a coleta e o pré-processamento de dados, o treinamento de modelos preditivos para identificação de padrões espaço-temporais e a integração com técnicas de geoprocessamento. Como resultado, estruturou-se uma plataforma visual e dinâmica que facilita a compreensão da incidência criminal, auxiliando estrategicamente a alocação preventiva de recursos policiais e apoiando a tomada de decisão baseada em evidências.
+\end{resumo}
+
+
+\section{Introdução}
+A segurança pública representa um dos desafios mais complexos na gestão dos centros urbanos contemporâneos. Dentre as ocorrências criminais, os furtos e roubos de veículos destacam-se pelos expressivos impactos econômicos e pela degradação da sensação de segurança da população. Com o processo de digitalização dos serviços públicos, um volume massivo de dados criminais, como os registros de Boletins de Ocorrência (BOs), passou a ser armazenado. Contudo, a simples acumulação de registros não se traduz automaticamente em redução da criminalidade.
+
+Neste cenário, a aplicação de técnicas de Inteligência Artificial, especificamente de \textit{Machine Learning} (Aprendizado de Máquina), aliada à análise espacial, surge como uma estratégia fundamental para o policiamento preditivo. A identificação de manchas criminais (\textit{hotspots}) permite que a gestão pública compreenda a dinâmica geográfica e temporal dos delitos, otimizando a alocação de viaturas e agentes. 
+
+Para que esses modelos analíticos gerem valor prático, é imprescindível que os resultados sejam disponibilizados por meio de ferramentas visuais acessíveis. Este artigo documenta o planejamento e o desenvolvimento de um \textit{pipeline} de \textit{Machine Learning} e de um \textit{dashboard}, construídos com o intuito de prever e mapear espacialmente a incidência de furtos e roubos de veículos.
+
+\section{Definição do Problema}
+Apesar da crescente política de dados abertos e da disponibilidade de bases de dados sobre criminalidade, os órgãos de segurança pública e a sociedade civil frequentemente carecem de soluções tecnológicas integradas que transformem dados brutos em inteligência acionável. A leitura de planilhas extensas ou relatórios estáticos dificulta a identificação rápida de áreas de risco e a formulação de estratégias preventivas. 
+
+Diante desse contexto, o problema de pesquisa que norteia este projeto é: \textbf{Como planejar e estruturar um \textit{pipeline} de \textit{Machine Learning} capaz de prever ocorrências de furtos e roubos de veículos e, de forma integrada, apresentar essas informações em um \textit{dashboard} de mapeamento espacial para otimizar a tomada de decisão em segurança pública.}
+
+\section{Objetivos}
+
+\subsection{Objetivo Geral}
+Desenvolver e gerenciar a implementação de um \textit{pipeline} completo de \textit{Machine Learning} integrado a um \textit{dashboard}, focado na predição e no mapeamento espacial (manchas criminais) de furtos e roubos de veículos, consolidando as práticas de planejamento de projetos.
+
+\subsection{Objetivos Específicos}
+Para garantir o alcance do objetivo geral, as entregas do projeto foram divididas nos seguintes objetivos específicos:
+\begin{itemize}
+    \item Realizar a extração, o tratamento e a análise exploratória de bases de dados criminais, estruturando-as para o consumo de algoritmos preditivos;
+    \item Desenvolver e treinar modelos de \textit{Machine Learning} capazes de identificar padrões temporais e espaciais associados à ocorrência de roubos e furtos;
+    \item Aplicar técnicas de geoprocessamento para a geração de manchas criminais (\textit{hotspots});
+    \item Construir e implantar um \textit{dashboard} que permita a visualização amigável dos dados históricos, das predições do modelo e do mapa de risco;
+    \item Aplicar metodologias de Planejamento e Gestão de Projetos para garantir o escopo, o cronograma e a qualidade das entregas da solução.
+\end{itemize}
+
+\section{Justificativa}
+A justificativa para a realização deste projeto sustenta-se tanto em seu impacto social quanto em sua relevância acadêmica e tecnológica. Do ponto de vista social e da gestão pública, a criação de um mapeamento preditivo de manchas criminais fornece uma ferramenta baseada em evidências para auxiliar estrategicamente o patrulhamento preventivo, com o potencial de reduzir o tempo de resposta policial e inibir novas ocorrências. A democratização do acesso a esses dados, apresentados de forma visual e intuitiva no \textit{dashboard}, também empodera a sociedade civil no entendimento da segurança local.
+
+No âmbito acadêmico e técnico, o projeto demonstra a aplicação prática dos conceitos estudados na disciplina de Planejamento e Gestão de Projetos da Universidade Federal da Fronteira Sul (UFFS). Ele ilustra o ciclo de vida completo de um produto de software orientado a dados, unindo a engenharia de dados, a modelagem preditiva e a construção de interfaces de usuário, evidenciando como a gestão eficiente do projeto é essencial para integrar essas diferentes áreas da computação em uma solução funcional e de alto valor agregado.
+
+\section{Fundamentação Teórica}
+A fundamentação teórica deste projeto ampara-se na interseção entre Segurança Pública, Inteligência Artificial (IA) e Geoprocessamento. Com o avanço da digitalização nos serviços públicos, houve um acúmulo massivo de dados criminais através de Boletins de Ocorrência (BOs). No entanto, a mera acumulação desses registros não garante, de forma automática, a redução da criminalidade.
+
+Nesse sentido, a IA, especialmente os algoritmos de \textit{Machine Learning} (Aprendizado de Máquina), atua como um motor essencial para o policiamento preditivo e para a transformação de registros brutos em inteligência acionável. Ao analisar grandes volumes de dados criminais, essas ferramentas tecnológicas são capazes de identificar padrões e tendências ocultas, permitindo compreender a dinâmica temporal e espacial dos delitos veiculares. A união das predições estatísticas à análise espacial viabiliza a delimitação de ``manchas criminais'' ou \textit{hotspots}, sendo uma estratégia fundamental para otimizar o patrulhamento e embasar o planejamento logístico e tático por parte do Estado.
+
+\section{Trabalhos Relacionados}
+A literatura científica e os relatórios governamentais recentes têm documentado amplamente o uso de modelos computacionais para a previsão e o mapeamento de delitos urbanos. Estudos sobre sistemas de apoio à decisão na segurança pública demonstram que algoritmos de classificação e regressão vêm sendo implementados com sucesso para prever crimes patrimoniais e direcionar recursos. Trabalhos nesse escopo apontam que ferramentas baseadas em IA devem focar na acessibilidade da informação. O simples fornecimento de planilhas extensas ou relatórios estáticos dificulta a identificação ágil de áreas de risco para a formulação de estratégias preventivas.
+
+Projetos similares evidenciam que o desenvolvimento de plataformas visuais e dinâmicas (como \textit{dashboards}) democratiza o acesso e a compreensão dos dados. Soluções do gênero focam no empoderamento da sociedade civil e das polícias, com impacto direto na inibição de novos crimes e na diminuição do tempo de resposta policial.
+
+\section{Metodologia}
+Considerando a natureza tecnológica deste projeto, a metodologia adotada baseia-se na \textit{Design Science Research Methodology} (DSRM) (Peffers \textit{et al.}, 2007), que fornece um modelo rigoroso de pesquisa voltado à criação de artefatos inovadores para resolver problemas práticos e organizacionais.
+
+\begin{itemize}
+    \item \textbf{1. Identificação do problema e motivação:} Constata-se a carência de soluções tecnológicas integradas, tanto para órgãos de segurança quanto para a sociedade civil, que transformem os dados abertos sobre criminalidade em inteligência acionável. A falta de mapeamento adequado dificulta o planejamento de medidas preventivas efetivas.
+    
+    \item \textbf{2. Definição dos objetivos de uma solução:} O propósito é o desenvolvimento e a gestão de um \textit{pipeline} analítico, estruturado com algoritmos de Aprendizado de Máquina e amparado por um \textit{dashboard} amigável, capaz de prever ocorrências de roubo e furto de veículos e apresentar manchas criminais.
+    
+    \item \textbf{3. Design e Desenvolvimento:} Esta etapa contempla o ciclo de engenharia e ciência de dados. Na presente iteração do projeto, desenvolveu-se um \textit{pipeline} automatizado em linguagem Python para a raspagem e extração contínua dos microdados criminais diretamente do portal da Secretaria de Segurança Pública de São Paulo (SSP-SP), mitigando as limitações técnicas da interface governamental. Esta base foi selecionada por fornecer Boletins de Ocorrência georreferenciados em uma janela histórica de cinco anos (2019 a 2023). A etapa subsequente envolverá o pré-processamento exploratório e a etapa de modelagem, na qual os algoritmos preditivos serão treinados para captar padrões espaço-temporais. Paralelamente, desenvolve-se a integração lógica com ferramentas de geoprocessamento para a construção do \textit{dashboard}.
+    
+    \item \textbf{4. Demonstração e Avaliação:} Consiste na implantação da plataforma visual e na aferição de sua eficácia em um contexto prático. O sistema é validado observando a forma como os dados históricos e as previsões do modelo são exibidos no mapa de risco. O objetivo desta avaliação é constatar se o produto fornece apoio efetivo na tomada de decisão baseada em evidências para o direcionamento e alocação de viaturas.
+    
+    \item \textbf{5. Comunicação:} Os resultados e o conhecimento gerado são compartilhados no âmbito acadêmico e técnico, por meio de documentação e relatórios, destacando a aplicação bem-sucedida das práticas de Planejamento e Gestão de Projetos e ilustrando o ciclo de vida completo de um produto de \textit{software} orientado a dados.
+\end{itemize}
+
+\section{Referências}
+
+\begin{thebibliography}{9}
+
+\bibitem{alves2018}
+ALVES, L. G. A.; RIBEIRO, H. V.; RODRIGUES, F. A. Crime prediction through urban metrics and statistical learning. \textbf{Physica A: Statistical Mechanics and its Applications}, v. 505, p. 435-443, 2018.
+
+\bibitem{chainey2008}
+CHAINEY, S.; TOMPSON, L.; UHLIG, S. The utility of hotspot mapping for predicting spatial patterns of crime. \textbf{Security Journal}, v. 21, n. 1-2, p. 4-28, 2008.
+
+\bibitem{peffers2007}
+PEFFERS, K.; TUUNANEN, T.; ROTHENBERGER, M. A.; CHATTERJEE, S. A design science research methodology for information systems research. \textbf{Journal of Management Information Systems}, v. 24, n. 3, p. 45-77, 2007.
+
+\bibitem{perry2013}
+PERRY, W. L.; MCINNIS, B.; PRICE, C. C.; SMITH, S. C.; HOLLYWOOD, J. S. \textbf{Predictive policing: The role of crime forecasting in law enforcement operations}. Santa Monica: Rand Corporation, 2013.
+
+\end{thebibliography}
+
+\end{document}

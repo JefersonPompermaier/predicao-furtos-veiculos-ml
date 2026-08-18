@@ -62,3 +62,5 @@ venv.bak/
 # OS files
 .DS_Store
 Thumbs.db
+data/SP/raw/*.xls
+data/SP/raw/*.csv
