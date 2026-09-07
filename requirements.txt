@@ -6,3 +6,6 @@ requests
 matplotlib
 seaborn
 ipykernel
+h3
+scikit-learn
+joblib
