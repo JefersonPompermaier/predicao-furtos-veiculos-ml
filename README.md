@@ -36,7 +36,7 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - **Levantamento de datasets públicos (com justificativa da escolha):** Mapeamento técnico concluído e validado no diretório de dados [data/README.md](data/README.md). A base da SSP-SP foi eleita devido aos microdados georreferenciados. A coleta automatizada é feita via Web Crawler (`src/scraper_ssp_sp.py`).
 - **Notebook de Análise Exploratória de Dados (EDA):** Prototipação concluída para validação de completude dos dados espaciais e temporais: [01_exploracao_dados.ipynb](notebooks/01_exploracao_dados.ipynb).
 - **Backlog de requisitos priorizado:** Refinamento do backlog com novas histórias de usuário e requisitos funcionais/não-funcionais mapeados (ver Kanban do repositório).
-- **Artigo Científico:** Inclusão das seções de Fundamentação Teórica, Trabalhos Relacionados e Metodologia (DSRM): [Artigo (LaTeX)](article/artigo.tex).
+- **Artigo Científico:** Inclusão das seções de Fundamentação Teórica, Trabalhos Relacionados e Metodologia (DSRM): [Artigo](https://www.overleaf.com/6548316254mfvbtfvtnrmr#7125df).
 
 ## Sprint 2 - MVP Analítico
 **Objetivo:** Estabelecer a infraestrutura central de modelagem, criando o Baseline Preditivo para estimar manchas criminais a partir dos dados limpos da malha H3.
@@ -46,4 +46,4 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - **Notebook com treinamento e comparação de modelos (baseline):** Desenvolvido pipeline de Machine Learning (Baseline RandomForestClassifier), comparando precisão, revocação e métrica ROC-AUC devido ao desbalanceamento: [03_modelagem_baseline.ipynb](notebooks/03_modelagem_baseline.ipynb).
 - **Kanban do projeto atualizado:** Tarefas correspondentes movidas para a aba "Done" no framework ágil (ver Kanban do repositório).
 - **Modelo treinado exportado:** Modelo Baseline congelado em formato binário usando Joblib e versionado em [models/baseline.joblib](models/baseline.joblib).
-- **Artigo Científico:** Detalhamento formal na Metodologia sobre como a rotina da DSRM iterou sobre as fases do CRISP-DM para treinar o classificador Random Forest. [Artigo (LaTeX)](article/artigo.tex).
+- **Artigo Científico:** Detalhamento formal na Metodologia sobre como a rotina da DSRM iterou sobre as fases do CRISP-DM para treinar o classificador Random Forest. [Artigo](https://www.overleaf.com/6548316254mfvbtfvtnrmr#7125df).
