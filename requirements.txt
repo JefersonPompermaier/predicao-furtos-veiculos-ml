@@ -1,11 +1,6 @@
-selenium
-webdriver-manager
-pandas
-beautifulsoup4
-requests
-matplotlib
-seaborn
-ipykernel
-h3
-scikit-learn
-joblib
+streamlit>=1.36
+pandas>=2.2
+scikit-learn==1.9.0
+joblib>=1.4
+h3>=4.0
+pydeck>=0.9
