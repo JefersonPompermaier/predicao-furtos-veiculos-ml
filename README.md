@@ -85,10 +85,3 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
    ```bash
    git push origin main
    ```
-2. Acesse a plataforma [Streamlit Community Cloud](https://share.streamlit.io/) e efetue login com a conta vinculada ao GitHub.
-3. Clique em **"New app"** e preencha as seguintes opções:
-   - **Repository:** `JefersonPompermaier/predicao-furtos-veiculos-ml`
-   - **Branch:** `main`
-   - **Main file path:** `app/main.py`
-4. Na seção **"Advanced settings"**, selecione a versão do interpretador (Python 3.10 ou 3.12).
-5. Clique em **"Deploy"**. O ambiente de nuvem instalará automaticamente as bibliotecas de `requirements.txt` e iniciará a aplicação.
