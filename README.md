@@ -53,35 +53,9 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 
 **Entregáveis:**
 - **Aplicação MVP em Streamlit:** Interface web contendo abas para visualização geoespacial (Mapa de risco), consulta interativa por coordenadas (Consulta por local) e documentação técnica das métricas e atributos: [app/main.py](app/main.py).
+- Link da aplicação [Streamlit](https://predicao-furtos-veiculos.streamlit.app/)
 - **Mapeamento Térmico Quente e Frio (Uber H3):** Camadas Pydeck (H3HexagonLayer e HeatmapLayer) com escala térmica (azul a vermelho) parametrizável para densidade de pontos no Estado de São Paulo (até 30.977 hexágonos).
 - **Módulo de Análise e Modulação Horária:** Decomposição e ponderação temporal baseada na distribuição empírica de 269.403 ocorrências da SSP-SP em 2023 ([data/SP/processed/perfil_horario.csv](data/SP/processed/perfil_horario.csv)), permitindo avaliar a variação do risco ao longo das 24 horas do dia.
 - **Exportação de Relatórios Operacionais:** Funcionalidade de download em CSV com os escores de risco, percentis e contagens de ocorrências por hexágono para planejamento de patrulhamento ostensivo.
 - **Configuração e Repositório Pronto para Deploy:** Dependências consolidadas em [requirements.txt](requirements.txt) e definições de inicialização em [.streamlit/config.toml](.streamlit/config.toml) para implantação no Streamlit Community Cloud.
 - **Artigo Científico:** Inclusão do capítulo "Adequação ao Ciclo de Vida CRISP-ML(Q)" logo após a Metodologia, correlacionando todas as fases do ciclo de vida às Sprints 0 a 3 com fundamentação teórica: [Artigo (LaTeX)](article/artigo.tex).
-
-### Instruções de Execução Local
-1. Obtenha o código e acesse o diretório do projeto:
-   ```bash
-   git clone https://github.com/JefersonPompermaier/predicao-furtos-veiculos-ml.git
-   cd predicao-furtos-veiculos-ml
-   ```
-2. Crie e ative um ambiente virtual Python:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   ```
-3. Instale as dependências:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Inicie o servidor da aplicação:
-   ```bash
-   streamlit run app/main.py
-   ```
-5. Acesse o painel pelo navegador em `http://localhost:8501`.
-
-### Instruções para Deploy no Streamlit Community Cloud
-1. Envie as alterações para o repositório remoto na branch `main`:
-   ```bash
-   git push origin main
-   ```
