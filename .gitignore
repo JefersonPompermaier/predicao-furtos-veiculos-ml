@@ -64,3 +64,4 @@ venv.bak/
 Thumbs.db
 data/SP/raw/*.xls
 data/SP/raw/*.csv
+*.zip
