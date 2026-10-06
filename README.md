@@ -36,7 +36,7 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - **Levantamento de datasets públicos (com justificativa da escolha):** Mapeamento técnico concluído e validado no diretório de dados [data/README.md](data/README.md). A base da SSP-SP foi eleita devido aos microdados georreferenciados. A coleta automatizada é feita via Web Crawler (`src/scraper_ssp_sp.py`).
 - **Notebook de Análise Exploratória de Dados (EDA):** Prototipação concluída para validação de completude dos dados espaciais e temporais: [01_exploracao_dados.ipynb](notebooks/01_exploracao_dados.ipynb).
 - **Backlog de requisitos priorizado:** Refinamento do backlog com novas histórias de usuário e requisitos funcionais/não-funcionais mapeados (ver Kanban do repositório).
-- **Artigo Científico:** Inclusão das seções de Fundamentação Teórica, Trabalhos Relacionados e Metodologia (DSRM): [Artigo](https://www.overleaf.com/6548316254mfvbtfvtnrmr#7125df).
+- **Artigo Científico:** Inclusão das seções de Fundamentação Teórica, Trabalhos Relacionados e Metodologia (DSRM): [Artigo (LaTeX)](article/artigo.tex).
 
 ## Sprint 2 - MVP Analítico
 **Objetivo:** Estabelecer a infraestrutura central de modelagem, criando o Baseline Preditivo para estimar manchas criminais a partir dos dados limpos da malha H3.
@@ -46,4 +46,49 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 - **Notebook com treinamento e comparação de modelos (baseline):** Desenvolvido pipeline de Machine Learning (Baseline RandomForestClassifier), comparando precisão, revocação e métrica ROC-AUC devido ao desbalanceamento: [03_modelagem_baseline.ipynb](notebooks/03_modelagem_baseline.ipynb).
 - **Kanban do projeto atualizado:** Tarefas correspondentes movidas para a aba "Done" no framework ágil (ver Kanban do repositório).
 - **Modelo treinado exportado:** Modelo Baseline congelado em formato binário usando Joblib e versionado em [models/baseline.joblib](models/baseline.joblib).
-- **Artigo Científico:** Detalhamento formal na Metodologia sobre como a rotina da DSRM iterou sobre as fases do CRISP-DM para treinar o classificador Random Forest. [Artigo](https://www.overleaf.com/6548316254mfvbtfvtnrmr#7125df).
+- **Artigo Científico:** Detalhamento formal na Metodologia sobre como a rotina da DSRM iterou sobre as fases do CRISP-DM para treinar o classificador Random Forest. [Artigo (LaTeX)](article/artigo.tex).
+
+## Sprint 3 - MVP do Produto
+**Objetivo:** Desenvolver e disponibilizar a aplicação web MVP em Streamlit consumindo o modelo preditivo baseline treinado na Sprint 2, com interface de mapas térmicos em grade Uber H3 cobrindo o Estado de São Paulo, módulo de modulação horária, consulta pontual e infraestrutura configurada para publicação no Streamlit Community Cloud.
+
+**Entregáveis:**
+- **Aplicação MVP em Streamlit:** Interface web contendo abas para visualização geoespacial (Mapa de risco), consulta interativa por coordenadas (Consulta por local) e documentação técnica das métricas e atributos: [app/main.py](app/main.py).
+- **Mapeamento Térmico Quente e Frio (Uber H3):** Camadas Pydeck (H3HexagonLayer e HeatmapLayer) com escala térmica (azul a vermelho) parametrizável para densidade de pontos no Estado de São Paulo (até 30.977 hexágonos).
+- **Módulo de Análise e Modulação Horária:** Decomposição e ponderação temporal baseada na distribuição empírica de 269.403 ocorrências da SSP-SP em 2023 ([data/SP/processed/perfil_horario.csv](data/SP/processed/perfil_horario.csv)), permitindo avaliar a variação do risco ao longo das 24 horas do dia.
+- **Exportação de Relatórios Operacionais:** Funcionalidade de download em CSV com os escores de risco, percentis e contagens de ocorrências por hexágono para planejamento de patrulhamento ostensivo.
+- **Configuração e Repositório Pronto para Deploy:** Dependências consolidadas em [requirements.txt](requirements.txt) e definições de inicialização em [.streamlit/config.toml](.streamlit/config.toml) para implantação no Streamlit Community Cloud.
+- **Artigo Científico:** Inclusão do capítulo "Adequação ao Ciclo de Vida CRISP-ML(Q)" logo após a Metodologia, correlacionando todas as fases do ciclo de vida às Sprints 0 a 3 com fundamentação teórica: [Artigo (LaTeX)](article/artigo.tex).
+
+### Instruções de Execução Local
+1. Obtenha o código e acesse o diretório do projeto:
+   ```bash
+   git clone https://github.com/JefersonPompermaier/predicao-furtos-veiculos-ml.git
+   cd predicao-furtos-veiculos-ml
+   ```
+2. Crie e ative um ambiente virtual Python:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
+3. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Inicie o servidor da aplicação:
+   ```bash
+   streamlit run app/main.py
+   ```
+5. Acesse o painel pelo navegador em `http://localhost:8501`.
+
+### Instruções para Deploy no Streamlit Community Cloud
+1. Envie as alterações para o repositório remoto na branch `main`:
+   ```bash
+   git push origin main
+   ```
+2. Acesse a plataforma [Streamlit Community Cloud](https://share.streamlit.io/) e efetue login com a conta vinculada ao GitHub.
+3. Clique em **"New app"** e preencha as seguintes opções:
+   - **Repository:** `JefersonPompermaier/predicao-furtos-veiculos-ml`
+   - **Branch:** `main`
+   - **Main file path:** `app/main.py`
+4. Na seção **"Advanced settings"**, selecione a versão do interpretador (Python 3.10 ou 3.12).
+5. Clique em **"Deploy"**. O ambiente de nuvem instalará automaticamente as bibliotecas de `requirements.txt` e iniciará a aplicação.
