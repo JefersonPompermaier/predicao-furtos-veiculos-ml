@@ -57,29 +57,22 @@ def date_to_week_number(date_val: Any) -> int:
     return int(date_val.strftime("%U"))
 
 
-def get_heat_color(val: float, alpha: int = 190) -> List[int]:
-    v = max(0.0, min(1.0, float(val)))
-    if v < 0.25:
-        t = v / 0.25
-        r = int(30 + t * (0 - 30))
-        g = int(60 + t * (150 - 60))
-        b = int(180 + t * (255 - 180))
-    elif v < 0.50:
-        t = (v - 0.25) / 0.25
-        r = int(0 + t * (250 - 0))
-        g = int(150 + t * (210 - 150))
-        b = int(255 + t * (0 - 255))
-    elif v < 0.75:
-        t = (v - 0.50) / 0.25
-        r = int(250 + t * (255 - 250))
-        g = int(210 + t * (120 - 210))
-        b = int(0 + t * (0 - 0))
+def get_heat_color(val: float, min_val: float, max_val: float, alpha: int = 190) -> List[int]:
+    if max_val <= min_val:
+        v = 0.5
     else:
-        t = (v - 0.75) / 0.25
-        r = int(255 + t * (220 - 255))
-        g = int(120 + t * (20 - 120))
-        b = int(0 + t * (20 - 0))
-    return [r, g, b, alpha]
+        v = max(0.0, min(1.0, (val - min_val) / (max_val - min_val)))
+    
+    v = v ** 3  # Transformacao exponencial para destacar picos
+    
+    if v < 0.25:
+        return [30, 60, 180, 50] # Azul quase transparente
+    elif v < 0.50:
+        return [0, 150, 255, 120] # Ciano
+    elif v < 0.75:
+        return [250, 210, 0, 180] # Amarelo/Laranja
+    else:
+        return [220, 20, 20, 240] # Vermelho forte
 
 
 def load_model(model_path: str):
@@ -164,9 +157,15 @@ def predict_all_hexagons(
 
     classes_previstas = (scores_base >= 0.50).astype(int)
 
-    # Cores termicas quente e frio moduladas pelo risco horario
-    colors = [get_heat_color(s) for s in scores_hourly]
+    min_s = scores_hourly.min()
+    max_s = scores_hourly.max()
+
+    colors = [get_heat_color(s, min_s, max_s) for s in scores_hourly]
     colors_arr = np.array(colors, dtype=np.int32)
+
+    # Elevacao exponencial
+    elevacao = ((scores_hourly - min_s) / (max_s - min_s + 1e-9)) ** 3
+    elevacao = elevacao * 5000.0
 
     df_result = pd.DataFrame({
         "H3_INDEX": metadata["unique_hexagons"],
@@ -184,7 +183,7 @@ def predict_all_hexagons(
         "COR_G": colors_arr[:, 1],
         "COR_B": colors_arr[:, 2],
         "COR_A": colors_arr[:, 3],
-        "ELEVACAO": np.round(scores_hourly * 1000.0, 1),
+        "ELEVACAO": np.round(elevacao, 1),
     })
 
     return df_result
@@ -226,8 +225,13 @@ def query_location(
                     "SEMANA_NUM": np.full(metadata["n_hexagons"], week_num, dtype=int),
                 })
             )[:, 1]
+            
+        all_scores_hourly = np.clip(all_scores * hour_factor, 0.0, 1.0)
+        min_s = all_scores_hourly.min()
+        max_s = all_scores_hourly.max()
+        
         percentile = float(np.round((all_scores <= score_base).mean() * 100.0, 2))
-        color = get_heat_color(score_hourly)
+        color = get_heat_color(score_hourly, min_s, max_s)
     else:
         score_base = 0.0
         score_hourly = 0.0

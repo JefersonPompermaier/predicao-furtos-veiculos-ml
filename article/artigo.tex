@@ -4,19 +4,17 @@
 \usepackage{graphicx,url}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
-\usepackage[latin1]{inputenc}  
 
      
 \sloppy
 
 \title{Previsão e mapeamento de furtos e roubos de veículos}
 
-\author{Alexnsadro Lazzaretti\inst{1}, Jeferson Solforoso Pompermaier
-\inst{2} }
+\author{Alexnsadro Lazzaretti\inst{1}, Jeferson Solforoso Pompermaier\inst{2},
+Murilo Gemi De Carli\inst{1} }
 
 
-\address{Universidade Federal da Fronteira Sul
-  (UFFS)\\
+\address{Universidade Federal da Fronteira Sul (UFFS)}
 
 \begin{document} 
 
@@ -32,11 +30,11 @@ A segurança pública em centros urbanos enfrenta desafios significativos, sendo
 
 
 \section{Introdução}
-A segurança pública representa um dos desafios mais complexos na gestão dos centros urbanos contemporâneos. Dentre as ocorrências criminais, os furtos e roubos de veículos destacam-se pelos expressivos impactos econômicos e pela degradação da sensação de segurança da população. Com o processo de digitalização dos serviços públicos, um volume massivo de dados criminais, como os registros de Boletins de Ocorrência (BOs), passou a ser armazenado. Contudo, a simples acumulação de registros não se traduz automaticamente em redução da criminalidade.
+A segurança pública representa um dos desafios mais complexos da gestão dos centros urbanos contemporâneos. Entre as ocorrências de natureza patrimonial, os furtos e roubos de veículos produzem impactos econômicos relevantes e afetam diretamente a percepção de segurança da população. Paralelamente, a digitalização dos serviços públicos ampliou a disponibilidade de registros criminais, como Boletins de Ocorrência (BOs), criando condições para o uso de métodos computacionais capazes de explorar padrões espaciais e temporais nesses dados.
 
-Neste cenário, a aplicação de técnicas de Inteligência Artificial, especificamente de \textit{Machine Learning} (Aprendizado de Máquina), aliada à análise espacial, surge como uma estratégia fundamental para o policiamento preditivo. A identificação de manchas criminais (\textit{hotspots}) permite que a gestão pública compreenda a dinâmica geográfica e temporal dos delitos, otimizando a alocação de viaturas e agentes. 
+Pesquisas anteriores demonstram que a análise espacial e os métodos preditivos podem contribuir para a identificação de áreas com maior concentração de ocorrências. Chainey, Tompson e Uhlig \cite{chainey2008} avaliaram diferentes técnicas de mapeamento de \textit{hotspots} e mostraram que dados históricos podem ser utilizados para estimar padrões espaciais futuros de criminalidade. Perry \textit{et al.} \cite{perry2013} sistematizaram o conceito de policiamento preditivo como o uso de técnicas analíticas, especialmente quantitativas, para apoiar a identificação de alvos prováveis de intervenção policial, destacando que tais métodos devem atuar como suporte à decisão e não como substitutos da estratégia operacional. Em estudo experimental, Mohler \textit{et al.} \cite{mohler2015} observaram que previsões espaço-temporais dinâmicas podem auxiliar o direcionamento do patrulhamento. No contexto brasileiro, Alves, Ribeiro e Rodrigues \cite{alves2018} empregaram técnicas de aprendizado estatístico para investigar a relação entre indicadores urbanos e criminalidade, evidenciando o potencial de algoritmos de \textit{Machine Learning} na análise desse domínio.
 
-Para que esses modelos analíticos gerem valor prático, é imprescindível que os resultados sejam disponibilizados por meio de ferramentas visuais acessíveis. Este artigo documenta o planejamento e o desenvolvimento de um \textit{pipeline} de \textit{Machine Learning} e de um \textit{dashboard}, construídos com o intuito de prever e mapear espacialmente a incidência de furtos e roubos de veículos.
+Esses trabalhos indicam que a utilidade prática de modelos preditivos depende não apenas do algoritmo empregado, mas também da organização dos dados, da representação espacial e da forma como os resultados são apresentados aos usuários. Nesse contexto, este artigo documenta o planejamento e o desenvolvimento de uma solução integrada composta por um \textit{pipeline} de \textit{Machine Learning} e um \textit{dashboard}, com o objetivo de prever e mapear espacialmente a incidência de furtos e roubos de veículos. A proposta busca transformar registros criminais abertos em informações visualmente interpretáveis, permitindo a análise de áreas de maior risco e oferecendo suporte à tomada de decisão em segurança pública.
 
 \section{Definição do Problema}
 Apesar da crescente política de dados abertos e da disponibilidade de bases de dados sobre criminalidade, os órgãos de segurança pública e a sociedade civil frequentemente carecem de soluções tecnológicas integradas que transformem dados brutos em inteligência acionável. A leitura de planilhas extensas ou relatórios estáticos dificulta a identificação rápida de áreas de risco e a formulação de estratégias preventivas. 
@@ -64,17 +62,44 @@ A justificativa para a realização deste projeto sustenta-se tanto em seu impac
 No âmbito acadêmico e técnico, o projeto demonstra a aplicação prática dos conceitos estudados na disciplina de Planejamento e Gestão de Projetos da Universidade Federal da Fronteira Sul (UFFS). Ele ilustra o ciclo de vida completo de um produto de software orientado a dados, unindo a engenharia de dados, a modelagem preditiva e a construção de interfaces de usuário, evidenciando como a gestão eficiente do projeto é essencial para integrar essas diferentes áreas da computação em uma solução funcional e de alto valor agregado.
 
 \section{Fundamentação Teórica}
-A fundamentação teórica deste projeto ampara-se na interseção entre Segurança Pública, Inteligência Artificial (IA) e Geoprocessamento. Com o avanço da digitalização nos serviços públicos, houve um acúmulo massivo de dados criminais através de Boletins de Ocorrência (BOs). No entanto, a mera acumulação desses registros não garante, de forma automática, a redução da criminalidade.
+A fundamentação teórica deste trabalho articula conceitos de análise criminal, policiamento preditivo, análise espacial e aprendizado de máquina. Esses elementos fornecem a base conceitual para a construção do \textit{pipeline} analítico e para a interpretação dos resultados produzidos pelo sistema.
 
-Nesse sentido, a IA, especialmente os algoritmos de \textit{Machine Learning} (Aprendizado de Máquina), atua como um motor essencial para o policiamento preditivo e para a transformação de registros brutos em inteligência acionável. Ao analisar grandes volumes de dados criminais, essas ferramentas tecnológicas são capazes de identificar padrões e tendências ocultas, permitindo compreender a dinâmica temporal e espacial dos delitos veiculares. A união das predições estatísticas à análise espacial viabiliza a delimitação de ``manchas criminais'' ou \textit{hotspots}, sendo uma estratégia fundamental para otimizar o patrulhamento e embasar o planejamento logístico e tático por parte do Estado.
+\subsection{Análise criminal e policiamento preditivo}
+A análise criminal utiliza dados de ocorrências para identificar padrões, tendências e concentrações que possam apoiar ações de prevenção e planejamento. Quando técnicas estatísticas e computacionais são utilizadas para estimar onde ou quando determinados eventos podem ocorrer, essa abordagem se aproxima do conceito de policiamento preditivo. Perry \textit{et al.} \cite{perry2013} definem o policiamento preditivo como a aplicação de técnicas analíticas, particularmente quantitativas, para identificar possíveis alvos de intervenção policial a partir de previsões estatísticas.
+
+Essa abordagem não implica prever com certeza a ocorrência de um crime individual. O objetivo é estimar probabilidades e padrões de risco a partir de dados históricos e contextuais, oferecendo informação adicional para apoiar decisões operacionais. Assim, a qualidade dos dados, a escolha das variáveis e a interpretação dos resultados são aspectos centrais, pois previsões computacionais devem ser entendidas como instrumentos de apoio, e não como decisões autônomas \cite{perry2013}.
+
+\subsection{Análise espacial e manchas criminais}
+Crimes não se distribuem de maneira uniforme no espaço urbano. Determinadas regiões podem apresentar concentrações recorrentes de ocorrências, formando as chamadas manchas criminais ou \textit{hotspots}. O mapeamento dessas áreas permite representar geograficamente a intensidade dos eventos e comparar regiões com diferentes níveis de incidência.
+
+Chainey, Tompson e Uhlig \cite{chainey2008} compararam diferentes técnicas de identificação de \textit{hotspots}, como mapas de pontos, mapas temáticos, grades e estimativa de densidade por kernel, demonstrando que o mapeamento de concentrações históricas pode possuir capacidade preditiva sobre a distribuição espacial de ocorrências futuras. Dessa forma, a análise espacial constitui uma etapa importante na transformação de registros georreferenciados em unidades adequadas à modelagem computacional.
+
+Neste projeto, essa necessidade é tratada por meio da discretização do espaço em células hexagonais utilizando o sistema H3. O H3 é um sistema hierárquico de indexação geoespacial que particiona o território em células hexagonais e permite converter coordenadas de latitude e longitude em identificadores espaciais discretos \cite{uberh3}. Essa representação facilita a agregação de ocorrências e a criação de variáveis tabulares utilizadas pelo modelo preditivo.
+
+\subsection{Aprendizado de máquina aplicado à predição criminal}
+O Aprendizado de Máquina permite construir modelos capazes de identificar relações entre variáveis a partir de exemplos observados e utilizar essas relações para realizar classificações ou estimativas em novos dados. Em problemas de criminalidade, atributos espaciais, temporais e socioeconômicos podem ser combinados para estimar níveis de risco ou a probabilidade de ocorrência de determinados delitos.
+
+Alves, Ribeiro e Rodrigues \cite{alves2018} demonstraram o uso de técnicas de aprendizado estatístico na previsão de criminalidade a partir de métricas urbanas, ressaltando a capacidade de algoritmos baseados em conjuntos de modelos de lidar com relações não lineares e correlações entre variáveis. No presente trabalho, o \textit{Random Forest} foi adotado como modelo de \textit{baseline}. Proposto por Breiman \cite{breiman2001}, o método combina diversas árvores de decisão construídas com amostras e subconjuntos aleatórios de atributos, agregando suas predições para melhorar a capacidade de generalização e reduzir a sensibilidade de uma única árvore às variações dos dados.
+
+\subsection{Avaliação em dados desbalanceados}
+A previsão de ocorrências criminais pode gerar um problema de classificação desbalanceada, pois, em um determinado intervalo temporal, a quantidade de regiões sem registro de crime tende a ser muito superior à quantidade de regiões com ocorrências. Nesse cenário, a acurácia isolada pode produzir uma percepção inadequada de desempenho, uma vez que um classificador pode obter alto valor simplesmente favorecendo a classe majoritária.
+
+Por essa razão, métricas que consideram o desempenho sobre a classe positiva são particularmente relevantes. O \textit{F1-Score} combina precisão e revocação em uma única medida, enquanto a área sob a curva ROC (ROC-AUC) avalia a capacidade de discriminação do classificador em diferentes limiares. Entretanto, Saito e Rehmsmeier \cite{saito2015} mostram que a interpretação da curva ROC requer cautela em bases fortemente desbalanceadas e que medidas baseadas em precisão e revocação podem fornecer uma visão mais informativa do desempenho prático. Essa discussão fundamenta o uso de múltiplas métricas na avaliação do \textit{baseline} deste projeto.
+
+\subsection{Visualização e apoio à decisão}
+A etapa final de uma solução analítica consiste em transformar as saídas do modelo em informação compreensível. No contexto da segurança pública, a apresentação espacial dos resultados permite relacionar previsões a regiões concretas do território e facilita a identificação de áreas prioritárias. Perry \textit{et al.} \cite{perry2013} destacam que previsões somente produzem efeitos operacionais quando integradas a processos de decisão e a estratégias de atuação. Por esse motivo, o projeto associa o \textit{pipeline} de predição a um \textit{dashboard} voltado à exploração dos dados históricos e das estimativas de risco.
 
 \section{Trabalhos Relacionados}
-A literatura científica e os relatórios governamentais recentes têm documentado amplamente o uso de modelos computacionais para a previsão e o mapeamento de delitos urbanos. Estudos sobre sistemas de apoio à decisão na segurança pública demonstram que algoritmos de classificação e regressão vêm sendo implementados com sucesso para prever crimes patrimoniais e direcionar recursos. Trabalhos nesse escopo apontam que ferramentas baseadas em IA devem focar na acessibilidade da informação. O simples fornecimento de planilhas extensas ou relatórios estáticos dificulta a identificação ágil de áreas de risco para a formulação de estratégias preventivas.
+Diferentes pesquisas já exploraram a combinação entre dados criminais, análise espacial e métodos preditivos. Chainey, Tompson e Uhlig \cite{chainey2008} investigaram a capacidade de técnicas de mapeamento de \textit{hotspots} em antecipar a distribuição espacial de crimes e verificaram desempenho superior da estimativa de densidade por kernel em relação a outras formas de representação avaliadas no estudo. O trabalho estabelece uma referência importante para a utilização de padrões históricos na identificação de áreas com maior probabilidade de novas ocorrências.
 
-Projetos similares evidenciam que o desenvolvimento de plataformas visuais e dinâmicas (como \textit{dashboards}) democratiza o acesso e a compreensão dos dados. Soluções do gênero focam no empoderamento da sociedade civil e das polícias, com impacto direto na inibição de novos crimes e na diminuição do tempo de resposta policial.
+Mohler \textit{et al.} \cite{mohler2015} avançaram nessa direção ao avaliar, por meio de ensaios de campo controlados, um modelo espaço-temporal de policiamento preditivo. Os autores compararam previsões algorítmicas com previsões produzidas por analistas e observaram evidências de redução de ocorrências associada ao patrulhamento orientado pelo modelo em determinados cenários, reforçando o potencial de previsões dinâmicas para apoiar a alocação de recursos.
+
+No Brasil, Alves, Ribeiro e Rodrigues \cite{alves2018} aplicaram algoritmos de aprendizado estatístico a indicadores urbanos para investigar sua relação com a criminalidade em cidades brasileiras. Embora o foco do estudo seja distinto do presente projeto, seus resultados demonstram que técnicas de \textit{Machine Learning} podem extrair relações relevantes de bases urbanas complexas e contribuir para análises voltadas a políticas públicas.
+
+O presente trabalho diferencia-se por concentrar-se especificamente em furtos e roubos de veículos e por integrar, em um único fluxo, aquisição e tratamento de dados abertos, discretização geoespacial, classificação preditiva e visualização em \textit{dashboard}. Assim, o objetivo não é apenas avaliar um algoritmo isolado, mas estruturar um artefato computacional completo capaz de transformar registros históricos em uma representação espacial de risco utilizável como apoio à decisão.
 
 \section{Metodologia}
-Considerando a natureza tecnológica deste projeto, a metodologia adotada baseia-se na \textit{Design Science Research Methodology} (DSRM) (Peffers \textit{et al.}, 2007), que fornece um modelo rigoroso de pesquisa voltado à criação de artefatos inovadores para resolver problemas práticos e organizacionais.
+Considerando a natureza tecnológica deste projeto, a metodologia adotada baseia-se na \textit{Design Science Research Methodology} (DSRM), proposta por Peffers \textit{et al.} \cite{peffers2007}, que fornece um modelo rigoroso de pesquisa voltado à criação de artefatos inovadores para resolver problemas práticos e organizacionais.
 
 \begin{itemize}
     \item \textbf{1. Identificação do problema e motivação:} Constata-se a carência de soluções tecnológicas integradas, tanto para órgãos de segurança quanto para a sociedade civil, que transformem os dados abertos sobre criminalidade em inteligência acionável. A falta de mapeamento adequado dificulta o planejamento de medidas preventivas efetivas.
@@ -83,14 +108,55 @@ Considerando a natureza tecnológica deste projeto, a metodologia adotada baseia
     
     \item \textbf{3. Design e Desenvolvimento:} Esta etapa contempla o ciclo de engenharia e ciência de dados inspirado no CRISP-DM (\textit{Cross-Industry Standard Process for Data Mining}). Na primeira iteração do projeto (Sprint 1), desenvolveu-se um \textit{pipeline} automatizado para extração dos microdados criminais do portal da SSP-SP. Na iteração subsequente (Sprint 2 - MVP Analítico), executou-se a fase de pré-processamento, convertendo pares de Latitude/Longitude em hexágonos de alta resolução utilizando o sistema de indexação espacial \textbf{Uber H3}. O espaço foi discretizado para transformar a complexidade geográfica em variáveis tabulares. Para estabelecer um marco de referência (\textit{Baseline}), instanciou-se um modelo inicial (Random Forest Classifier) a fim de prever o risco de ocorrência criminal por hexágono, pavimentando o caminho para futuras iterações focadas em Engenharia de Atributos avançada.
     
-    \item \textbf{4. Demonstração e Avaliação:} Consiste na validação do modelo empírico frente aos desafios inerentes à segurança pública. O MVP analítico (\textit{Baseline}) foi avaliado por meio de métricas estatísticas (F1-Score, ROC-AUC) para lidar com a natureza de forte desbalanceamento de classes (ampla maioria de áreas sem crimes). O objetivo desta primeira avaliação não é a precisão absoluta, mas sim constatar a viabilidade preditiva inicial e estabelecer uma linha de base estatística. Este marco será utilizado nas próximas iterações para comprovar o ganho de eficácia gerado pela adição de novas variáveis contextuais e algorítmos otimizados.
+    \item \textbf{4. Demonstração e Avaliação:} Consiste na validação do modelo empírico frente aos desafios inerentes à segurança pública. O MVP analítico (\textit{Baseline}) foi avaliado por meio de métricas estatísticas (F1-Score, ROC-AUC) para lidar com a natureza de forte desbalanceamento de classes (ampla maioria de áreas sem crimes). O objetivo desta primeira avaliação não é a precisão absoluta, mas sim constatar a viabilidade preditiva inicial e estabelecer uma linha de base estatística. Este marco será utilizado nas próximas iterações para comprovar o ganho de eficácia gerado pela adição de novas variáveis contextuais e algoritmos otimizados.
     
     \item \textbf{5. Comunicação:} Os resultados e o conhecimento gerado são compartilhados no âmbito acadêmico e técnico, por meio de documentação e relatórios, destacando a aplicação bem-sucedida das práticas de Planejamento e Gestão de Projetos e ilustrando o ciclo de vida completo de um produto de \textit{software} orientado a dados.
 \end{itemize}
 
+\section{Adequação ao Ciclo de Vida CRISP-ML(Q)}
+O processo de desenvolvimento deste projeto foi estruturado segundo o modelo de referência CRISP-ML(Q) \cite{studer2021}, uma extensão do consagrado CRISP-DM voltada especificamente para soluções baseadas em aprendizado de máquina, com ênfase na garantia de qualidade (Q) ao longo de todo o ciclo de vida. A divisão das entregas (Sprints) reflete as fases propostas pela metodologia:
+
+\begin{itemize}
+    \item \textbf{Sprint 0 -- Compreensão do Negócio e dos Dados (Fase 1 do CRISP-ML(Q)):} Consistiu na definição do problema de segurança pública, no estabelecimento de objetivos mensuráveis e na análise exploratória inicial para atestar a viabilidade da utilização de dados abertos da Secretaria de Segurança Pública.
+    \item \textbf{Sprint 1 -- Preparação de Dados (Fase 2 do CRISP-ML(Q)):} Envolveu o desenvolvimento de rotinas automatizadas para extração, limpeza e consolidação dos microdados criminais, além da aplicação de técnicas de geoprocessamento e indexação espacial (H3), visando à estruturação de atributos consumíveis por algoritmos preditivos.
+    \item \textbf{Sprint 2 -- Engenharia e Avaliação do Modelo (Fases 3 e 4 do CRISP-ML(Q)):} Focou na construção do \textit{baseline} empregando o modelo \textit{Random Forest Classifier}. A validação priorizou métricas adequadas para contextos de desbalanceamento de classes, como F1-Score e ROC-AUC, estabelecendo o limite de qualidade empírico exigido para a aprovação do modelo inicial.
+    \item \textbf{Sprint 3 -- Implantação do Modelo (Fase 5 do CRISP-ML(Q)):} O modelo treinado foi integrado a uma aplicação web interativa (MVP), encapsulando a complexidade analítica e fornecendo uma interface de usuário (\textit{dashboard}) para a visualização de mapas de calor e estimativas de risco criminal em ambiente de produção em nuvem.
+\end{itemize}
+
+A Fase 6 do CRISP-ML(Q), referente ao Monitoramento e Manutenção contínua do modelo para mitigação de fenômenos como o \textit{concept drift}, excede o escopo delimitado para o MVP atual, restando como recomendação arquitetural para futuras iterações e aprimoramentos do \textit{pipeline}.
+
+\section{Arquitetura da Solução e Decisões Técnicas}
+
+\subsection{Visão geral da arquitetura}
+A solução foi estruturada como um fluxo sequencial e modular de processamento de dados, no qual cada etapa possui uma responsabilidade bem definida. Em termos lógicos, a arquitetura pode ser representada pelo seguinte encadeamento: \textbf{fonte de dados $\rightarrow$ coleta e pré-processamento $\rightarrow$ indexação geoespacial $\rightarrow$ construção dos atributos $\rightarrow$ modelo preditivo $\rightarrow$ geração das estimativas de risco $\rightarrow$ visualização no \textit{dashboard}}. Essa separação foi adotada para facilitar a manutenção, a reprodutibilidade dos experimentos e a substituição independente de componentes, como o algoritmo de classificação ou a estratégia de criação de atributos, sem exigir a reconstrução de toda a solução.
+
+Os registros de furtos e roubos de veículos constituem a entrada do sistema. Após a coleta, os dados passam por rotinas de limpeza e padronização, responsáveis por remover ou tratar registros inconsistentes e organizar atributos temporais e espaciais em um formato adequado para análise. Em seguida, as coordenadas geográficas são convertidas em identificadores espaciais H3. Os dados processados alimentam o modelo de \textit{Machine Learning}, que produz estimativas de risco por região. Por fim, essas informações são consumidas pela camada de apresentação, responsável por exibir os resultados de forma interativa e espacialmente interpretável.
+
+\subsection{Representação geoespacial com H3}
+Uma das principais decisões de projeto foi não utilizar latitude e longitude brutas como única representação espacial. Coordenadas contínuas dificultam a agregação direta de ocorrências e não representam explicitamente regiões discretas de análise. Por esse motivo, adotou-se o sistema H3, que particiona o território em células hexagonais hierárquicas e associa cada posição geográfica a um identificador espacial \cite{uberh3}.
+
+A discretização em hexágonos permite agrupar ocorrências pertencentes a uma mesma área e transformar o problema geográfico em uma estrutura tabular adequada aos algoritmos de aprendizado de máquina. A escolha também favorece análises de vizinhança e possibilita alterar o nível de resolução espacial conforme a granularidade desejada. Dessa forma, o H3 funciona como elo entre a etapa de geoprocessamento e a etapa preditiva, reduzindo a complexidade de manipulação das coordenadas e mantendo a localização necessária para posterior reconstrução do mapa de risco.
+
+\subsection{Modelo preditivo e estratégia de avaliação}
+O \textit{Random Forest Classifier} foi escolhido como modelo de \textit{baseline} por apresentar características adequadas à primeira versão do artefato: capacidade de capturar relações não lineares, combinação de múltiplas árvores de decisão e menor dependência de transformações complexas dos atributos quando comparado a diversos modelos paramétricos \cite{breiman2001}. A finalidade dessa escolha não é assumir que o \textit{Random Forest} representa necessariamente o melhor modelo possível, mas estabelecer uma referência reproduzível contra a qual versões posteriores possam ser comparadas.
+
+Outra decisão técnica importante diz respeito à avaliação. Como a maioria das combinações de região e intervalo temporal pode não possuir ocorrência registrada, o conjunto de dados apresenta tendência ao desbalanceamento entre as classes. Consequentemente, a acurácia isolada poderia mascarar um modelo pouco útil para detectar a classe de interesse. Foram priorizadas, portanto, métricas como \textit{F1-Score} e ROC-AUC, complementando a análise do desempenho preditivo e reduzindo a dependência de uma única medida. Essa decisão está alinhada à literatura sobre avaliação de classificadores em bases desbalanceadas \cite{saito2015}.
+
+\subsection{Camada de apresentação e aplicação web}
+A camada de apresentação foi implementada como uma aplicação web em Streamlit. O \textit{framework} executa a lógica da aplicação em um servidor Python e disponibiliza a interface ao usuário por meio do navegador, seguindo uma arquitetura cliente-servidor \cite{streamlit2026}. Sua adoção foi motivada principalmente pela integração direta com o ecossistema Python utilizado nas etapas de ciência de dados e pela disponibilidade de componentes para tabelas, gráficos, mapas e controles interativos. Com isso, o mesmo ambiente tecnológico pode carregar dados processados, executar a lógica necessária para apresentação dos resultados e renderizar o \textit{dashboard}, reduzindo a complexidade de integração entre um \textit{backend} analítico e uma interface construída em tecnologia distinta.
+
+Para o escopo de um MVP acadêmico, essa decisão privilegia velocidade de desenvolvimento, facilidade de experimentação e simplicidade de implantação. Como contrapartida, uma aplicação concentrada em Streamlit oferece menor desacoplamento entre apresentação e processamento do que uma arquitetura composta por uma API independente e um \textit{frontend} dedicado. Essa limitação foi considerada aceitável nesta etapa, pois o objetivo principal consiste em validar o fluxo completo do artefato e a utilidade das visualizações. Caso requisitos futuros envolvam maior volume de acessos, múltiplos consumidores das predições ou integração com outros sistemas, a camada preditiva poderá ser exposta por uma API própria sem alterar o princípio modular adotado para o \textit{pipeline}.
+
+A versão executável do \textit{dashboard} foi disponibilizada no endereço \url{https://predicao-furtos-veiculos.streamlit.app/}. A disponibilização do artefato permite demonstrar, de maneira concreta, a integração entre o processamento dos dados, o modelo preditivo e a visualização espacial, complementando a avaliação estatística com uma demonstração funcional da solução.
+
+\subsection{Justificativa das decisões de design}
+As decisões de design foram orientadas pela necessidade de equilibrar rigor analítico, simplicidade técnica e possibilidade de evolução incremental. A arquitetura em etapas separa aquisição, transformação, modelagem e visualização, favorecendo testes e substituições futuras. O H3 foi empregado para criar uma unidade espacial consistente e reutilizável; o \textit{Random Forest} foi utilizado como referência inicial por sua adequação a relações não lineares e por exigir pouca preparação específica dos atributos; as métricas de avaliação foram escolhidas em função do desbalanceamento esperado; e o Streamlit foi adotado para transformar rapidamente os resultados do \textit{pipeline} em um artefato interativo acessível pelo navegador.
+
+Em conjunto, essas escolhas evitam complexidade arquitetural desnecessária para a fase atual do projeto, sem impedir extensões posteriores. O projeto pode evoluir, por exemplo, por meio da inclusão de novas variáveis contextuais, comparação com outros classificadores, ajuste da resolução H3, persistência dos resultados em banco de dados ou separação da inferência em um serviço independente. Assim, a arquitetura atual deve ser entendida como uma base funcional e extensível, adequada ao objetivo de validar o MVP e estabelecer um ponto de partida técnico para novas iterações.
+
 \section{Referências}
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
 \bibitem{alves2018}
 ALVES, L. G. A.; RIBEIRO, H. V.; RODRIGUES, F. A. Crime prediction through urban metrics and statistical learning. \textbf{Physica A: Statistical Mechanics and its Applications}, v. 505, p. 435-443, 2018.
@@ -98,11 +164,31 @@ ALVES, L. G. A.; RIBEIRO, H. V.; RODRIGUES, F. A. Crime prediction through urban
 \bibitem{chainey2008}
 CHAINEY, S.; TOMPSON, L.; UHLIG, S. The utility of hotspot mapping for predicting spatial patterns of crime. \textbf{Security Journal}, v. 21, n. 1-2, p. 4-28, 2008.
 
+
+\bibitem{mohler2015}
+MOHLER, G. O.; SHORT, M. B.; MALINOWSKI, S.; JOHNSON, M.; TITA, G. E.; BERTOZZI, A. L.; BRANTINGHAM, P. J. Randomized controlled field trials of predictive policing. \textbf{Journal of the American Statistical Association}, v. 110, n. 512, p. 1399--1411, 2015.
+
+\bibitem{breiman2001}
+BREIMAN, L. Random forests. \textbf{Machine Learning}, v. 45, p. 5--32, 2001.
+
+\bibitem{saito2015}
+SAITO, T.; REHMSMEIER, M. The precision-recall plot is more informative than the ROC plot when evaluating binary classifiers on imbalanced datasets. \textbf{PLOS ONE}, v. 10, n. 3, e0118432, 2015.
+
+\bibitem{uberh3}
+UBER TECHNOLOGIES. \textbf{H3: Hexagonal hierarchical geospatial indexing system}. Disponível em: \url{https://h3geo.org/}. Acesso em: 6 out. 2026.
+
+
+\bibitem{streamlit2026}
+STREAMLIT. \textbf{Streamlit documentation: Understanding Streamlit's client-server architecture}. Disponível em: \url{https://docs.streamlit.io/develop/concepts/architecture/architecture}. Acesso em: 6 out. 2026.
+
 \bibitem{peffers2007}
 PEFFERS, K.; TUUNANEN, T.; ROTHENBERGER, M. A.; CHATTERJEE, S. A design science research methodology for information systems research. \textbf{Journal of Management Information Systems}, v. 24, n. 3, p. 45-77, 2007.
 
 \bibitem{perry2013}
 PERRY, W. L.; MCINNIS, B.; PRICE, C. C.; SMITH, S. C.; HOLLYWOOD, J. S. \textbf{Predictive policing: The role of crime forecasting in law enforcement operations}. Santa Monica: Rand Corporation, 2013.
+
+\bibitem{studer2021}
+STUDER, S. \textit{et al.} Towards CRISP-ML(Q): A machine learning systems engineering process with quality assurance methodology. \textbf{Procedia Computer Science}, v. 184, p. 392-399, 2021.
 
 \end{thebibliography}
 
