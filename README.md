@@ -6,6 +6,7 @@ Pipeline automatizado de engenharia de dados criminais e modelo de Machine Learn
 ## Autores
 - Jeferson Solforoso Pompermaier
 - Alexsandro Lazzaretti
+- Murilo Gemi De Carli
 
 ## Estrutura do repositório
 - `/article/`: Construção incremental do artigo científico (Introdução, Metodologia, Resultados).
